@@ -214,6 +214,7 @@ int main() {
             while (terminusornot!=1 && terminusornot!=2);
         }
     while (terminusornot!=1);
+return 0
 }
 
 
