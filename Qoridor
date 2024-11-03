@@ -89,3 +89,4 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
         }
         printf("\n");
     }
+}
