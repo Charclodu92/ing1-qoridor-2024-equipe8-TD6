@@ -1,1 +1,35 @@
+#include <stduio.h>
+int main() {
+    printf("===========[Qoridor]===========\n\n");
+    printf("Bienvenue sur le jeu du Qoridor !\n\n");
 
+    ///////////// JOUEURS ////////////////
+    int joueurpartie,joueurhumain,joueurrobot;
+    do {
+        printf("Pour commencer, voici les modes de jeu disponible :\n- 2 joueurs\n- 4 joueurs\nVeuillez choisir le nombre de joeurs (2 ou 4):\n");
+        scanf("%d",&joueurpartie);
+    } while(joueurpartie !=2 && joueurpartie !=4);
+    do {
+        printf("Combien de joueur etes vous a jouer (de 1 a %d)?:",joueurpartie);
+        scanf("%d",&joueurhumain);
+        joueurrobot = joueurpartie - joueurhumain;
+    }
+    while( joueurhumain <1 || joueurhumain >joueurpartie);
+    printf("Il y aura donc %d IA dans la partie !\n",joueurrobot);
+    char nom[joueurpartie][20];
+    for(int i=1;i<=joueurpartie;i++){
+        if(i<=joueurhumain){
+            printf("Joueur %d, il est temps d'ecrire votre nom:",i);
+            scanf("%s",nom[i]);
+        }
+        else {
+            int j=0;
+            j=j+i;
+            printf("Veuillez donner un nom a l'IA %d :",j);
+            scanf("%s",nom[i]);
+        }
+    }
+    printf("\nLes joueurs de cette partie sont :\n");
+    for (int i=1;i<=joueurpartie;i++){
+        printf("%s",nom[i]);
+        printf("\n");
