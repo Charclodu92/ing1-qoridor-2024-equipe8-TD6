@@ -148,3 +148,52 @@ do {
                 scanf("%d",&choix2);
             }
             while (choix2<1 || choix2>2);
+ while(choix2!=1);
+    }printf("La Partie peut enfin commencer !!");
+    int terminusornot;
+        do {int a,b;
+            printf("Choisi une case:");
+            scanf("%d",&a);
+            printf("Choisi une case:");
+            scanf("%d",&b);
+            Color(0,7);
+            plateau[a][b]='W';
+            for(int i=0;i<18;i++) {
+                for(int j=0;j<37;j++){
+
+                    if(plateau[i][j]==1) {
+                        Color(7,7);
+                        printf("%d",plateau[i][j]);
+                    }
+                    else if(plateau[i][j]==2) {
+                        Color(0,0);
+                        printf("%d",plateau[i][j]);
+
+                    }
+                    else if(plateau[i][j]==0 ) {
+                        Color(couleurcases,couleurcases);
+                        printf("%c",plateau[i][j]);
+                    }
+                    else {
+                        if(plateau[i][j]=='W') {
+                            Color(0,7);
+                            printf("%c",plateau[i][j]);
+                        }
+
+                        else {
+                            Color(15,0);
+                            printf("%c",plateau[i][j]);
+                        }
+                    }
+
+                }
+                printf("\n");
+            }
+            do {
+                Color(15,0);
+                printf("Avez vous fini ? : 1-OUI\n2-NON : ");
+                scanf("%d",&terminusornot);
+            }
+            while (terminusornot!=1 && terminusornot!=2);
+        }
+    while (terminusornot!=1);
