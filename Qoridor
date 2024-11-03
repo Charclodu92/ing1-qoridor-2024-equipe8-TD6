@@ -93,7 +93,8 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
 
  int choix,choix2;
     Color(15,0);
-    do {
+   do {
+do {
         printf("Souhaitez-vous changer les couleurs des cases ?\n1 - OUI\n2 - NON\nA vous de choisir: ");
         scanf("%d",&cases);
     }
@@ -140,3 +141,9 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
 
                 }
                 printf("\n");
+          do {
+                Color(15,0);
+                printf("Est-ce votre choix definitif ? :\n1 - OUI\n2 - NON");
+                scanf("%d",&choix2);
+            }
+            while (choix2<1 || choix2>2);
