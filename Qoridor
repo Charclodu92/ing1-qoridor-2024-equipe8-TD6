@@ -1,4 +1,20 @@
-#include <stduio.h>
+#include <stdio.h>
+#include <windows.h>
+
+void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
+}
+void gotoligcol( int lig, int col )
+{
+    // ressources
+    COORD mycoord;
+    mycoord.X = col;
+    mycoord.Y = lig;
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
+}
+
 int main() {
     printf("===========[Qoridor]===========\n\n");
     printf("Bienvenue sur le jeu du Qoridor !\n\n");
@@ -33,13 +49,16 @@ int main() {
     for (int i=1;i<=joueurpartie;i++){
         printf("%s",nom[i]);
         printf("\n");
+    }
 
-void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
-{
-    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
-}
- ////////// Plateau ///////////
+    //////// JETON  ////////
+
+
+
+
+
+
+    ////////// Plateau ///////////
     char plateau[18][37] = {
         {2,2,2,'A',2,2,2,'B',2,2,2,'C',2,2,2,'D',2,2,2,'E',2,2,2,'F',2,2,2,'G',2,2,2,'H',2,2,2,'I',2},
         {'1',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
@@ -66,44 +85,40 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
     printf("\n");
 
     for(int i=0;i<18;i++) {
-        for(int i=0;i<18;i++) {
-                for(int j=0;j<37;j++){
+        for(int j=0;j<37;j++){
 
-                    if(plateau[i][j]==1) {
-                        Color(7,7);
-                        printf("%d",plateau[i][j]);
-                    }
-                    else if(plateau[i][j]==2) {
-                        Color(0,0);
-                        printf("%d",plateau[i][j]);
+            if(plateau[i][j]==1) {
+                Color(7,7);
+                printf("%d",plateau[i][j]);
+            }
+            else if(plateau[i][j]==2) {
+                Color(0,0);
+                printf("%d",plateau[i][j]);
 
-                    }
-                    else if (plateau[i][j]==0){
-                        Color(couleurcases,couleurcases);
-                        printf("%c",plateau[i][j]);
-                    }
-                    else {
-                        Color(15,0);
-                        printf("%c",plateau[i][j]);
-                    }
+            }
+            else if(plateau[i][j]==0) {
+                Color(couleurcases,couleurcases);
+                printf("%c",plateau[i][j]);
+            }
+            else {
+                Color(15,0);
+                printf("%c",plateau[i][j]);
+            }
 
         }
         printf("\n");
     }
-}
-
- int choix,choix2;
+    int choix,choix2;
     Color(15,0);
-   do {
-do {
+    do {
         printf("Souhaitez-vous changer les couleurs des cases ?\n1 - OUI\n2 - NON\nA vous de choisir: ");
         scanf("%d",&cases);
     }
     while(cases!=1 && cases!=2);
 
     if(cases==1) {
-    
-          do {
+        do {
+            do {
                 printf("Veuillez choisir parmi ces couleurs :\n1 - Blanc\n2 - Jaune \n3 - Turquoise\n4 - Noir\n5 - Rouge:");
                 scanf("%d",&choix);
             }
@@ -142,13 +157,15 @@ do {
 
                 }
                 printf("\n");
-          do {
+            }
+            do {
                 Color(15,0);
                 printf("Est-ce votre choix definitif ? :\n1 - OUI\n2 - NON");
                 scanf("%d",&choix2);
             }
             while (choix2<1 || choix2>2);
- while(choix2!=1);
+        }
+        while(choix2!=1);
     }printf("La Partie peut enfin commencer !!");
     int terminusornot;
         do {int a,b;
@@ -197,3 +214,4 @@ do {
             while (terminusornot!=1 && terminusornot!=2);
         }
     while (terminusornot!=1);
+}
