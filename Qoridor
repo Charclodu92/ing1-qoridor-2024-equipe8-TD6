@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+#include <stdlib.h>
 
 void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de couleurs
 {
@@ -32,19 +33,24 @@ int main() {
     }
     while( joueurhumain <1 || joueurhumain >joueurpartie);
     printf("Il y aura donc %d IA dans la partie !\n",joueurrobot);
-    char nom[joueurpartie][20];
-    for(int i=1;i<=joueurpartie;i++){
+
+    char nom[4][20]={"1","2","3","4"};
+    char nomia[3][20]={"ia1","ia2","ia3"};
+    int j=0;
+    for(int i=1;i<=joueurpartie;i++) {
         if(i<=joueurhumain){
             printf("Joueur %d, il est temps d'ecrire votre nom:",i);
             scanf("%s",nom[i]);
         }
         else {
-            int j=0;
-            j=j+i;
-            printf("Veuillez donner un nom a l'IA %d :",j);
-            scanf("%s",nom[i]);
+
+                if (j < joueurrobot) ;
+                    strcpy(nom[i], nomia[j]);
+                    j++;
+            }
         }
-    }
+
+           
     printf("\nLes joueurs de cette partie sont :\n");
     for (int i=1;i<=joueurpartie;i++){
         printf("%s",nom[i]);
@@ -52,7 +58,6 @@ int main() {
     }
 
     //////// JETON  ////////
-
 
 
 
