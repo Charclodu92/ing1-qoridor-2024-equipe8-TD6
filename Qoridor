@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h>
@@ -7,13 +8,33 @@ void Color(int couleurDuTexte,int couleurDeFond) // fonction d'affichage de coul
     HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H,couleurDeFond*16+couleurDuTexte);
 }
-void gotoligcol( int lig, int col )
-{
-    // ressources
-    COORD mycoord;
-    mycoord.X = col;
-    mycoord.Y = lig;
-    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
+int fct_ligne(int a) {
+    switch(a) {
+        case 1:return a = 1;break;
+        case 2:return a = 3;break;
+        case 3:return a = 5;break;
+        case 4:return a = 7;break;
+        case 5:return a = 9;break;
+        case 6:return a = 11;break;
+        case 7:return a = 13;break;
+        case 8:return a = 15;break;
+        case 9:return a = 17;break;
+        default: return -1;
+            }
+}
+int fct_colonne(char a) {
+    switch(a) {
+        case'A': return a =1;break;
+        case'B': return a = 3;break;
+        case'C': return a = 5;break;
+        case'D': return a = 7;break;
+        case'E': return a = 9;break;
+        case'F': return a = 11;break;
+        case'G': return a = 13;break;
+        case'H': return a = 15;break;
+        case'I': return a = 17;break;
+        default:return -1;
+    }
 }
 
 int main() {
@@ -44,13 +65,13 @@ int main() {
         }
         else {
 
-                if (j < joueurrobot) ;
-                    strcpy(nom[i], nomia[j]);
-                    j++;
-            }
+            if (j < joueurrobot) ;
+            strcpy(nom[i], nomia[j]);
+            j++;
         }
+    }
 
-           
+
     printf("\nLes joueurs de cette partie sont :\n");
     for (int i=1;i<=joueurpartie;i++){
         printf("%s",nom[i]);
@@ -64,25 +85,25 @@ int main() {
 
 
     ////////// Plateau ///////////
-    char plateau[18][37] = {
-        {2,2,2,'A',2,2,2,'B',2,2,2,'C',2,2,2,'D',2,2,2,'E',2,2,2,'F',2,2,2,'G',2,2,2,'H',2,2,2,'I',2},
-        {'1',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'2',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'3',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'4',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'5',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'6',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'7',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'8',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
-        {2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {'9',2,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0},
+    char plateau[18][18] = {
+        {' ','A',' ','B',' ','C',' ','D',' ','E',' ','F',' ','G',' ','H',' ','I'},
+        {'1',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'2',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'3',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'4',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'5',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'6',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'7',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'8',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
+        {' ',1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+        {'9',0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0},
         };
 
     printf("\nVoici le plateau original :\n");
@@ -90,24 +111,20 @@ int main() {
     printf("\n");
 
     for(int i=0;i<18;i++) {
-        for(int j=0;j<37;j++){
+        for(int j=0;j<18;j++){
 
             if(plateau[i][j]==1) {
                 Color(7,7);
-                printf("%d",plateau[i][j]);
+                printf(" %d ",plateau[i][j]);
             }
-            else if(plateau[i][j]==2) {
-                Color(0,0);
-                printf("%d",plateau[i][j]);
 
-            }
             else if(plateau[i][j]==0) {
                 Color(couleurcases,couleurcases);
-                printf("%c",plateau[i][j]);
+                printf(" %c ",plateau[i][j]);
             }
             else {
                 Color(15,0);
-                printf("%c",plateau[i][j]);
+                printf(" %c ",plateau[i][j]);
             }
 
         }
@@ -140,24 +157,24 @@ int main() {
                 default : couleurcases=4;
             }
             for(int i=0;i<18;i++) {
-                for(int j=0;j<37;j++){
+                for(int j=0;j<18;j++){
 
                     if(plateau[i][j]==1) {
                         Color(7,7);
-                        printf("%d",plateau[i][j]);
+                        printf(" %d ",plateau[i][j]);
                     }
                     else if(plateau[i][j]==2) {
                         Color(0,0);
-                        printf("%d",plateau[i][j]);
+                        printf(" %d ",plateau[i][j]);
 
                     }
                     else if (plateau[i][j]==0){
                         Color(couleurcases,couleurcases);
-                        printf("%c",plateau[i][j]);
+                        printf(" %c ",plateau[i][j]);
                     }
                     else {
                         Color(15,0);
-                        printf("%c",plateau[i][j]);
+                        printf(" %c ",plateau[i][j]);
                     }
 
                 }
@@ -172,51 +189,31 @@ int main() {
         }
         while(choix2!=1);
     }printf("La Partie peut enfin commencer !!");
-    int terminusornot;
-        do {int a,b;
-            printf("Choisi une case:");
-            scanf("%d",&a);
-            printf("Choisi une case:");
-            scanf("%d",&b);
-            Color(0,7);
-            plateau[a][b]='W';
-            for(int i=0;i<18;i++) {
-                for(int j=0;j<37;j++){
 
-                    if(plateau[i][j]==1) {
-                        Color(7,7);
-                        printf("%d",plateau[i][j]);
-                    }
-                    else if(plateau[i][j]==2) {
-                        Color(0,0);
-                        printf("%d",plateau[i][j]);
 
-                    }
-                    else if(plateau[i][j]==0 ) {
-                        Color(couleurcases,couleurcases);
-                        printf("%c",plateau[i][j]);
-                    }
-                    else {
-                        if(plateau[i][j]=='W') {
-                            Color(0,7);
-                            printf("%c",plateau[i][j]);
-                        }
 
-                        else {
-                            Color(15,0);
-                            printf("%c",plateau[i][j]);
-                        }
-                    }
+    /////// BARRIERE ////////
 
-                }
-                printf("\n");
-            }
-            do {
-                Color(15,0);
-                printf("Avez vous fini ? : 1-OUI\n2-NON : ");
-                scanf("%d",&terminusornot);
-            }
-            while (terminusornot!=1 && terminusornot!=2);
-        }
-    while (terminusornot!=1);
+    char x2,x1;
+    int y1,y2,a,b;
+
+    do {
+        printf("\nVeuillez donner barriere (A1 A2) :");
+        scanf(" %c%d %c%d",&x1,&y1,&x2,&y2);
+        y1= fct_ligne(y1);
+        y2 = fct_ligne(y2);
+        x1 = fct_colonne(x1);
+        x2 = fct_colonne(x2);
+        printf("%d %d %d %d",x1,y1,x2,y2);
+        a = x1-x2;
+        b = y1-y2;
+        printf("\n Voici x1-x2=%d et y1-y2=%d",a,b);
+    } while ( !((a==2 || a==-2)&& b==0) && !((b==2 || b==-2) && a==0) );
+    int choixbarriere;
+    if (a==0) {
+        printf("Veuillez choisir:\n1 - Gauche\n2 - Droite\nLequel choissisez vous :");
+        scanf("%d",&choixbarriere);
+        if(choixbarriere==1) {
+    }
+
 }
