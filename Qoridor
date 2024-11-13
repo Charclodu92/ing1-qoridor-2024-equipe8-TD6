@@ -213,7 +213,57 @@ int main() {
     if (a==0) {
         printf("Veuillez choisir:\n1 - Gauche\n2 - Droite\nLequel choissisez vous :");
         scanf("%d",&choixbarriere);
-        if(choixbarriere==1) {
+        if(choixbarriere==2) {
+            for (int i=0;i<=2;i++ ) {
+                Color(0,0);
+                plateau[y1+i][x1+1]=3;
+            }
+        }
+            else {
+                for (int i=0;i<=2;i++ ) {
+                    Color(0,0);
+                    plateau[y1+i][x1-1]=3;
+            }
+        }
     }
+    else {
+        printf("Veuillez choisir:\n1 - HAUT\n2 - BAS\nLequel choissisez vous :");
+        scanf("%d",&choixbarriere);
+        if(choixbarriere==2) {
+            for (int i=0;i<=2;i++ ) {
+                Color(0,0);
+                plateau[y1+1][x1+i]=3;
+            }
+        }
+        else {
+            for (int i=0;i<=2;i++ ) {
+                Color(0,0);
+                plateau[y1-1][x1+i]=3;
+            }
+        }
+    }
+    for(int i=0;i<18;i++) {
+        for(int j=0;j<18;j++){
 
+            if(plateau[i][j]==1) {
+                Color(7,7);
+                printf(" %d ",plateau[i][j]);
+            }
+            else if(plateau[i][j]==3) {
+                Color(0,0);
+                printf(" %d ",plateau[i][j]);
+
+            }
+            else if (plateau[i][j]==0){
+                Color(couleurcases,couleurcases);
+                printf(" %c ",plateau[i][j]);
+            }
+            else {
+                Color(15,0);
+                printf(" %c ",plateau[i][j]);
+            }
+
+        }
+        printf("\n");
+    }
 }
